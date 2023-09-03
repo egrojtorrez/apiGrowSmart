@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    profiles:
+      - prod
+      - dev
+    container_name: postgres
+    restart: always
+    env_file: ./.env
+    environment:
+      POSTGRES_USER: $DBUSER
+      POSTGRES_PASSWORD: $DBPASSWORD
+    ports:
+      - $DBPORT:$DBPORT
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:7.6
+    profiles:
+      - dev
+    container_name: pgadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: $PGEMAIL
+      PGADMIN_DEFAULT_PASSWORD: $PGPASSWORD
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+  app:
+    build: .
+    container_name: app
+    restart: always
+    profiles:
+      - prod
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - $NODE_PORT:$NODE_PORT
+volumes:
+  local_pgdata:
+  pgadmin-data:
+  

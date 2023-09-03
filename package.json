@@ -1,0 +1,33 @@
+{
+  "name": "apigrowsmart",
+  "version": "1.0.0",
+  "description": "Api para proyecto escolar GrowSmart",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "start": "node build/index.js",
+    "dev": "ts-node-dev ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egrojtorrez/apiGrowSmart.git"
+  },
+  "author": "Jorge Omar Torres Sosa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/egrojtorrez/apiGrowSmart/issues"
+  },
+  "homepage": "https://github.com/egrojtorrez/apiGrowSmart#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/pg": "^8.10.2",
+    "dotenv": "^16.3.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pg": "^8.11.3"
+  }
+}
