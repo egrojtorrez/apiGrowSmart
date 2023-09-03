@@ -9,4 +9,3 @@ export const DBNAME = process.env.DBNAME
 
 // NODE Server Configuration
 export const PORT = Number(process.env.PORT)
-
