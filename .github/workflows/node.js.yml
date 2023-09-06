@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Log
+      run: ls -l
     - name: Run docker-compose
       run: docker-compose -f .\docker-compose-test.yaml up -d --build
     - name: Run Linter
