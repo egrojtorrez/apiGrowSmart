@@ -1,15 +1,13 @@
+import app from './app'
+import request from 'supertest'
 import { describe, expect, it } from 'vitest'
 
-describe('Initial Test', async () => {
-  it('Api Work', async () => {
-    const result = await fetch('http://localhost:3000/ping')
-    const status = result.status
-    expect(status).toBe(200)
+describe('GET/ ping ', async () => {
+  const response = await request(app).get('/ping')
+  it('Status is 200', async () => {
+    expect(response.status).toBe(200)
   })
-
-  it('BD Work', async () => {
-    const result = await fetch('http://localhost:3000/ping')
-    const data = await result.json()
-    expect(data).toHaveProperty('now')
+  it('Body have the now property', async () => {
+    expect(response.body).toHaveProperty('now')
   })
 })
