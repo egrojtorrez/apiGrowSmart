@@ -4,7 +4,7 @@
   "description": "Api para proyecto escolar GrowSmart",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc --project tsconfig.build.json",
     "lint": "eslint --ext .ts src",
     "start": "node build/index.js",
     "dev": "ts-node-dev ./src/index.ts",

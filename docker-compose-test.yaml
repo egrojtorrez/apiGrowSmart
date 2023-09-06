@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres-test
+    restart: always
+    environment:
+      POSTGRES_USER: $DBUSER
+      POSTGRES_PASSWORD: $DBPASSWORD
+      POSTGRES_DB: $DBNAME
+    ports:
+      - $DBPORT:$DBPORT
+  app:
+    build: .
+    container_name: test-node
+    restart: always
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - $NODE_PORT:$NODE_PORT
+    environment:
+      - NODE_ENV=test
+      - DBUSER=$DBUSER
+      - DBPASSWORD=$DBPASSWORD
+      - DBNAME=$DBNAME
+      - DBPORT=$DBPORT
+      - DBHOST=postgres-test
+      - NODE_PORT=$NODE_PORT
+      - INITDB=true
