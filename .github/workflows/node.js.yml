@@ -1,4 +1,4 @@
-name: Node.js CI
+name: API CI
 
 on:
   push:
@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    - run: npm ci
-    - run: npm run lint
+    - name: Run docker-compose
+      run: docker-compose -f .\docker-compose-test.yaml up -d --build
+    - name: Run Linter
+      run: docker exec -it test-node npm run lint
+    - name: Run Unit Tests
+      run: docker exec -it test-node npm run test:run
+
