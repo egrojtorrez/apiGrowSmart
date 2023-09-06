@@ -17,8 +17,8 @@ jobs:
         node-versoin: '18'
     - name: Install dependencies
       run: npm ci
-    - name: Lint
-      run: npm run eslint
+    - name: Eslint
+      run: npm run lint
   test:
     needs: [lint]
     runs-on: ubuntu-latest
